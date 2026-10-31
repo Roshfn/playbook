@@ -7,5 +7,7 @@ import java.util.Optional;
 
 public interface OtpChallengeRepository {
     Optional<OtpChallenge> findLatestActive(String phoneNumber, OtpPurpose purpose, Instant now);
+    Optional<OtpChallenge> findLatest(String phoneNumber, OtpPurpose purpose);
+    long countCreatedSince(String phoneNumber, Instant since);
     OtpChallenge save(OtpChallenge challenge);
 }

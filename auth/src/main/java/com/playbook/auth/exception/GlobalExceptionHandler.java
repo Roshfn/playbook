@@ -19,6 +19,11 @@ public class GlobalExceptionHandler {
         return ProblemDetail.forStatusAndDetail(HttpStatus.FORBIDDEN, ex.getMessage());
     }
 
+    @ExceptionHandler(TooManyRequestsException.class)
+    ProblemDetail tooMany(TooManyRequestsException ex) {
+        return ProblemDetail.forStatusAndDetail(HttpStatus.TOO_MANY_REQUESTS, ex.getMessage());
+    }
+
     @ExceptionHandler({UnsupportedProviderException.class, MethodArgumentNotValidException.class})
     ProblemDetail badRequest(Exception ex) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
